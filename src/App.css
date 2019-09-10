@@ -1,33 +1,67 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  /* border: 1px solid red; */
+}
+#root {
+  height: 100vh;
+  background: #060ab2;
+  display: flex;
+  margin: auto;
+}
 .App {
+  margin: auto;
+}
+h1 {
+  background: #060ab2;
   text-align: center;
 }
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
+.memory-game {
+  width: 60vh;
+  height: 60vh;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  perspective: 1000px;
+  /* border: 1px solid white; */
 }
-
+.memory-card {
+  width: calc(25% - 1%);
+  height: calc(25% - 1%);
+  margin: 0.5%;
+  position: relative;
+  transform: scale(1);
+  transform-style: preserve-3d;
+  transition: transform 0.5s;
+}
+.front-face,
+.back-face {
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  border-radius: 5px;
+  position: absolute;
+  background: #1c7ccc;
+  backface-visibility: hidden;
+}
+.front-face {
+  transform: rotateY(180deg);
+}
+.memory-card:active {
+  transform: scale(0.97);
+  transition: transform 0.2s;
+}
+.memory-card.flip {
+  transform: rotateY(180deg);
+}
 .App-header {
   background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
+
+  /* display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  font-size: calc(10px + 2vmin); */
   color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 }
