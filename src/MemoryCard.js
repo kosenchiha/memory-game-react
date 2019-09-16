@@ -5,21 +5,23 @@ export class MemoryCard extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      flip: false
-    };
+    this.state = {};
   }
-  handleClick = () => {
-    this.setState({ flip: !this.state.flip });
+
+  handleClick = e => {
+    this.setState({ flip: true });
+    this.props.handleCardClick(this.props.cardValue, this.props.id);
   };
   render() {
-    const { card } = this.props;
+    const { cardSource, id, active } = this.props;
+
     return (
       <div
-        className={this.state.flip ? "memory-card flip" : "memory-card"}
-        onClick={this.handleClick}
+        className={this.props.isFliped ? "memory-card flip" : "memory-card"}
+        onClick={active ? this.handleClick : null}
+        id={id}
       >
-        <img src={card} className="front-face" alt=""></img>
+        <img src={cardSource} className="front-face" alt=""></img>
         <img src={question} className="back-face" alt=""></img>
       </div>
     );
