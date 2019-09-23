@@ -65,3 +65,12 @@ h1 {
   font-size: calc(10px + 2vmin); */
   color: white;
 }
+.status-bar-container {
+  color: white;
+  display: flex;
+  justify-content: center;
+}
+.status-bar-element {
+  /* border: 1px solid white; */
+  padding: 1% 4%;
+}

@@ -1,31 +1,32 @@
-import React, { Component } from "react";
+import React from "react";
 import question from "./img/question-mark.png";
 
-export class MemoryCard extends Component {
-  constructor(props) {
-    super(props);
+const MemoryCard = props => {
+  const {
+    cardSource,
+    id,
+    cardValue,
+    active,
+    isFliped,
+    handleCardClick
+  } = props;
 
-    this.state = {};
-  }
-
-  handleClick = e => {
-    this.setState({ flip: true });
-    this.props.handleCardClick(this.props.cardValue, this.props.id);
-  };
-  render() {
-    const { cardSource, id, active } = this.props;
-
-    return (
-      <div
-        className={this.props.isFliped ? "memory-card flip" : "memory-card"}
-        onClick={active ? this.handleClick : null}
-        id={id}
-      >
-        <img src={cardSource} className="front-face" alt=""></img>
-        <img src={question} className="back-face" alt=""></img>
-      </div>
-    );
-  }
-}
+  return (
+    <div
+      className={isFliped ? "memory-card flip" : "memory-card"}
+      onClick={
+        active
+          ? () => {
+              handleCardClick(cardValue, id);
+            }
+          : null
+      }
+      id={id}
+    >
+      <img src={cardSource} className="front-face" alt=""></img>
+      <img src={question} className="back-face" alt=""></img>
+    </div>
+  );
+};
 
 export default MemoryCard;

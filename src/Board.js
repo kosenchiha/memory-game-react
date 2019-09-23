@@ -29,6 +29,14 @@ const cards = [
   [star, "star", false]
 ];
 
+function shuffle(a) {
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
 export class Board extends Component {
   constructor(props) {
     super(props);
@@ -37,10 +45,12 @@ export class Board extends Component {
       openedCardValues: [],
       openedCardIds: [],
       isActive: Array(16).fill(true),
-      cards: cards
+      cards: shuffle(cards)
     };
   }
-
+  onRestart = event => {
+    this.setState({ cards: shuffle(cards) });
+  };
   handleCardClick = (newEl, id) => {
     if (this.state.isActive[id]) {
       let newCards = this.state.cards.slice();
@@ -69,7 +79,6 @@ export class Board extends Component {
               newCards = this.state.cards.slice();
 
               setTimeout(() => {
-                console.log("hi");
                 this.state.openedCardIds.forEach(
                   el => (newCards[el][2] = false)
                 );
