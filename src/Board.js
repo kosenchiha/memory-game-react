@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
+import StatusBar from "./StatusBar";
 import elf from "./img/elf.png";
 import bell from "./img/bell.png";
 import gift from "./img/gift.png";
@@ -11,22 +12,22 @@ import star from "./img/star.png";
 import MemoryCard from "./MemoryCard";
 
 const cards = [
-  [elf, "elf", false],
-  [bell, "bell", false],
-  [gift, "gift", false],
-  [penguin, "penguin", false],
-  [reindeer, "reindeer", false],
-  [santasHat, "santaHat", false],
-  [snowflake, "snowflake", false],
-  [star, "star", false],
-  [elf, "elf", false],
-  [bell, "bell", false],
-  [gift, "gift", false],
-  [penguin, "penguin", false],
-  [reindeer, "reindeer", false],
-  [santasHat, "santaHat", false],
-  [snowflake, "snowflake", false],
-  [star, "star", false]
+  [elf, "elf"],
+  [bell, "bell"],
+  [gift, "gift"],
+  [penguin, "penguin"],
+  [reindeer, "reindeer"],
+  [santasHat, "santaHat"],
+  [snowflake, "snowflake"],
+  [star, "star"],
+  [elf, "elf"],
+  [bell, "bell"],
+  [gift, "gift"],
+  [penguin, "penguin"],
+  [reindeer, "reindeer"],
+  [santasHat, "santaHat"],
+  [snowflake, "snowflake"],
+  [star, "star"]
 ];
 
 function shuffle(a) {
@@ -45,21 +46,30 @@ export class Board extends Component {
       openedCardValues: [],
       openedCardIds: [],
       isActive: Array(16).fill(true),
+      isFliped: Array(16).fill(false),
       cards: shuffle(cards)
     };
   }
-  onRestart = event => {
-    this.setState({ cards: shuffle(cards) });
+
+  onRestart = () => {
+    this.setState({
+      openedCardValues: [],
+      openedCardIds: [],
+      isActive: Array(16).fill(true),
+      isFliped: Array(16).fill(false),
+      cards: shuffle(cards)
+    });
   };
+
   handleCardClick = (newEl, id) => {
     if (this.state.isActive[id]) {
-      let newCards = this.state.cards.slice();
-      newCards[id][2] = true;
+      let newIsFliped = this.state.isFliped.slice();
+      newIsFliped[id] = true;
       this.setState(
         {
           openedCardValues: [...this.state.openedCardValues, newEl],
           openedCardIds: [...this.state.openedCardIds, id],
-          cards: newCards
+          isFliped: newIsFliped
         },
         () => {
           if (this.state.openedCardValues.length > 1) {
@@ -76,18 +86,18 @@ export class Board extends Component {
                 openedCardIds: []
               });
             } else {
-              newCards = this.state.cards.slice();
+              newIsFliped = this.state.isFliped.slice();
 
               setTimeout(() => {
                 this.state.openedCardIds.forEach(
-                  el => (newCards[el][2] = false)
+                  el => (newIsFliped[el] = false)
                 );
                 this.setState({
-                  cards: newCards,
+                  isFliped: newIsFliped,
                   openedCardValues: [],
                   openedCardIds: []
                 });
-              }, 1000);
+              }, 500);
             }
           }
         }
@@ -97,19 +107,22 @@ export class Board extends Component {
 
   render() {
     return (
-      <div className="memory-game">
-        {cards.map((card, index) => {
-          return (
-            <MemoryCard
-              isFliped={card[2]}
-              active={this.state.isActive[index]}
-              cardSource={card[0]}
-              id={index}
-              cardValue={card[1]}
-              handleCardClick={this.handleCardClick}
-            />
-          );
-        })}
+      <div>
+        <StatusBar onRestart={this.onRestart} />
+        <div className="memory-game">
+          {cards.map((card, index) => {
+            return (
+              <MemoryCard
+                isFliped={this.state.isFliped[index]}
+                active={this.state.isActive[index]}
+                cardSource={card[0]}
+                id={index}
+                cardValue={card[1]}
+                handleCardClick={this.handleCardClick}
+              />
+            );
+          })}
+        </div>
       </div>
     );
   }

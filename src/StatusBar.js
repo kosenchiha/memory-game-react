@@ -8,7 +8,9 @@ export class StatusBar extends Component {
         <p className="status-bar-element">stars</p>
         <p className="status-bar-element">timer</p>
         <p className="status-bar-element">X moves</p>
-        <p className="status-bar-element">restart</p>
+        <p className="status-bar-element" onClick={this.props.onRestart}>
+          restart
+        </p>
       </div>
     );
   }
