@@ -109,6 +109,11 @@ export class Board extends Component {
     return (
       <div>
         <StatusBar onRestart={this.onRestart} />
+        {this.state.isActive.every(elememt => {
+          return elememt === false;
+        }) ? (
+          <p className="message">You win!</p>
+        ) : null}
         <div className="memory-game">
           {cards.map((card, index) => {
             return (

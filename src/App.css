@@ -65,7 +65,8 @@ h1 {
   font-size: calc(10px + 2vmin); */
   color: white;
 }
-.status-bar-container {
+.status-bar-container,
+.message {
   color: white;
   display: flex;
   justify-content: center;
