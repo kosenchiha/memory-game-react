@@ -47,9 +47,16 @@ export class Board extends Component {
       openedCardIds: [],
       isActive: Array(16).fill(true),
       isFliped: Array(16).fill(false),
-      cards: shuffle(cards)
+      cards: shuffle(cards),
+      counter: 0
     };
   }
+
+  countSteps = () => {
+    this.setState(current => ({
+      counter: current.counter + 1
+    }));
+  };
 
   onRestart = () => {
     this.setState({
@@ -99,6 +106,7 @@ export class Board extends Component {
                 });
               }, 500);
             }
+            this.countSteps();
           }
         }
       );
@@ -108,7 +116,7 @@ export class Board extends Component {
   render() {
     return (
       <div>
-        <StatusBar onRestart={this.onRestart} />
+        <StatusBar onRestart={this.onRestart} counter={this.state.counter} />
         {this.state.isActive.every(elememt => {
           return elememt === false;
         }) ? (
