@@ -1,18 +1,16 @@
-import React, { Component } from "react";
+import React from "react";
 import "./App.css";
 
-export class StatusBar extends Component {
-  render() {
-    return (
-      <div className="status-bar-container">
-        <p className="status-bar-element">timer</p>
-        <p className="status-bar-element">{this.props.counter} moves</p>
-        <p className="status-bar-element" onClick={this.props.onRestart}>
-          restart
-        </p>
-      </div>
-    );
-  }
-}
+const StatusBar = props => {
+  const { counter, onRestart } = props;
+  return (
+    <div className="status-bar-container">
+      <p className="status-bar-element">{counter} moves</p>
+      <p className="status-bar-element" onClick={onRestart}>
+        Restart
+      </p>
+    </div>
+  );
+};
 
 export default StatusBar;

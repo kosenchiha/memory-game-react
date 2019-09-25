@@ -1,7 +1,7 @@
 import React from "react";
 import question from "./img/question-mark.png";
 
-const MemoryCard = props => {
+const Card = props => {
   const {
     cardSource,
     id,
@@ -13,7 +13,7 @@ const MemoryCard = props => {
 
   return (
     <div
-      className={isFliped ? "memory-card flip" : "memory-card"}
+      className={isFliped ? "card flip" : "card"}
       onClick={
         active
           ? () => {
@@ -29,4 +29,4 @@ const MemoryCard = props => {
   );
 };
 
-export default MemoryCard;
+export default Card;

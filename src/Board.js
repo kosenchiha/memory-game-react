@@ -1,42 +1,9 @@
 import React, { Component } from "react";
 import "./App.css";
 import StatusBar from "./StatusBar";
-import elf from "./img/elf.png";
-import bell from "./img/bell.png";
-import gift from "./img/gift.png";
-import penguin from "./img/penguin.png";
-import reindeer from "./img/reindeer.png";
-import santasHat from "./img/santas-hat.png";
-import snowflake from "./img/snowflake.png";
-import star from "./img/star.png";
-import MemoryCard from "./MemoryCard";
-
-const cards = [
-  [elf, "elf"],
-  [bell, "bell"],
-  [gift, "gift"],
-  [penguin, "penguin"],
-  [reindeer, "reindeer"],
-  [santasHat, "santaHat"],
-  [snowflake, "snowflake"],
-  [star, "star"],
-  [elf, "elf"],
-  [bell, "bell"],
-  [gift, "gift"],
-  [penguin, "penguin"],
-  [reindeer, "reindeer"],
-  [santasHat, "santaHat"],
-  [snowflake, "snowflake"],
-  [star, "star"]
-];
-
-function shuffle(a) {
-  for (let i = a.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [a[i], a[j]] = [a[j], a[i]];
-  }
-  return a;
-}
+import MemoryCard from "./Card";
+import { shuffle } from "./helpers/shuffle";
+import { cards } from "./helpers/cardsSource";
 
 export class Board extends Component {
   constructor(props) {
@@ -48,7 +15,8 @@ export class Board extends Component {
       isActive: Array(16).fill(true),
       isFliped: Array(16).fill(false),
       cards: shuffle(cards),
-      counter: 0
+      counter: 0,
+      startTimer: false
     };
   }
 
@@ -116,7 +84,11 @@ export class Board extends Component {
   render() {
     return (
       <div>
-        <StatusBar onRestart={this.onRestart} counter={this.state.counter} />
+        <StatusBar
+          onRestart={this.onRestart}
+          counter={this.state.counter}
+          startTimer={this.state.startTimer}
+        />
         {this.state.isActive.every(elememt => {
           return elememt === false;
         }) ? (
@@ -126,6 +98,7 @@ export class Board extends Component {
           {cards.map((card, index) => {
             return (
               <MemoryCard
+                key={index}
                 isFliped={this.state.isFliped[index]}
                 active={this.state.isActive[index]}
                 cardSource={card[0]}

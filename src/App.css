@@ -26,7 +26,7 @@ h1 {
   perspective: 1000px;
   /* border: 1px solid white; */
 }
-.memory-card {
+.card {
   width: calc(25% - 1%);
   height: calc(25% - 1%);
   margin: 0.5%;
@@ -48,11 +48,11 @@ h1 {
 .front-face {
   transform: rotateY(180deg);
 }
-.memory-card:active {
+.card:active {
   transform: scale(0.97);
   transition: transform 0.2s;
 }
-.memory-card.flip {
+.card.flip {
   transform: rotateY(180deg);
 }
 .App-header {
