@@ -32,6 +32,7 @@ export class Board extends Component {
       openedCardIds: [],
       isActive: Array(16).fill(true),
       isFliped: Array(16).fill(false),
+      counter: 0,
       cards: shuffle(cards)
     });
   };
