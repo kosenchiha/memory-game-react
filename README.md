@@ -1,68 +1,33 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Matching Game
 
-## Available Scripts
+## Overview
 
-In the project directory, you can run:
+- This app was created for the Chingu Voyage 12 pre-work.
 
-### `npm start`
+- This game is a browser-based card matching game that presents the player with cards arranged in a 4x4 grid.
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- The back of each card is a common design shared by all cards. The front contains a distinctive symbol shared by one pair of cards in the deck, thus there are 8 unique symbols shared by 8 pairs of cards in the deck.
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+- The objective of the Matching Game is for the player to turn over pairs of matching cards across eight successive turns. In a turn if the player selects two cards whose symbols match those cards, along with those successfully matched in previous turns, will remain up. However, if the player chooses two cards with different symbols they will both be flipped over, obscuring their symbols.
 
-### `npm test`
+- The game ends when all eight pairs of matching cards have been revealed. When this occurs a message is be displayed to let the user know they have won the game.
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- A 'Restart' button resets the game board.
 
-### `npm run build`
+## Running The Project
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Live version:
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+From the repo:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1. Create a fork of this project.
+2. Clone your fork into your local machine.
+3. Run `npm intall` in your bash/command line.
+4. Run `npm start` in your bash/command line.
 
-### `npm run eject`
+## Tech Used / Dependencies
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+- This is a React App boostrapped with CRA.
+- CSS for stiling components.
+- [Prettier](https://www.npmjs.com/package/prettier) to format code.
+- Icons from [icons8.com](https://icons8.com/)
