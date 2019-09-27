@@ -2,7 +2,9 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  /* border: 1px solid red; */
+}
+body {
+  background: #060ab2;
 }
 #root {
   height: 100vh;
@@ -57,12 +59,6 @@ h1 {
 }
 .App-header {
   background-color: #282c34;
-
-  /* display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin); */
   color: white;
 }
 .status-bar-container,
@@ -72,6 +68,9 @@ h1 {
   justify-content: center;
 }
 .status-bar-element {
-  /* border: 1px solid white; */
   padding: 1% 4%;
+  width: 100%;
+}
+.first {
+  text-align: right;
 }
