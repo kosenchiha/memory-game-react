@@ -38,7 +38,7 @@ export class Board extends Component {
   };
 
   handleCardClick = (newEl, id) => {
-    if (this.state.isActive[id]) {
+    if (this.state.isActive[id] && !this.state.isFliped[id]) {
       let newIsFliped = this.state.isFliped.slice();
       newIsFliped[id] = true;
       this.setState(
