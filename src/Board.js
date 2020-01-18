@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import "./App.css";
 import StatusBar from "./StatusBar";
-import MemoryCard from "./Card";
+import Card from "./Card";
 import { shuffle } from "./helpers/shuffle";
+import { incrementByOne } from "./helpers/incrementByOne";
 import { cards } from "./helpers/cardsSource";
 
 export class Board extends Component {
@@ -16,28 +17,61 @@ export class Board extends Component {
       isFliped: Array(16).fill(false),
       cards: shuffle(cards),
       counter: 0,
-      startTimer: false
+      startTimer: false,
+      time: 0
     };
   }
 
+  componentWillUnmount() {
+    clearInterval(this.timer);
+  }
+
   countSteps = () => {
-    this.setState(current => ({
-      counter: current.counter + 1
-    }));
+    this.setState(incrementByOne("counter"));
   };
 
   onRestart = () => {
+    clearInterval(this.timer);
     this.setState({
       openedCardValues: [],
       openedCardIds: [],
       isActive: Array(16).fill(true),
       isFliped: Array(16).fill(false),
       counter: 0,
-      cards: shuffle(cards)
+      cards: shuffle(cards),
+      startTimer: false,
+      time: 0
     });
   };
 
+  startTimer = () => {
+    if (!this.state.startTimer) {
+      this.setState({ startTimer: true });
+      this.timer = setInterval(
+        () => this.setState(incrementByOne("time")),
+        1000
+      );
+    }
+  };
+
+  stopTimer = () => {
+    console.log(
+      this.state.isActive.every(elememt => {
+        return elememt === false;
+      })
+    );
+    if (
+      this.state.isActive.every(elememt => {
+        return elememt === false;
+      })
+    ) {
+      clearInterval(this.timer);
+      this.setState({ startTimer: false });
+    }
+  };
+
   handleCardClick = (newEl, id) => {
+    this.startTimer();
     if (this.state.isActive[id] && !this.state.isFliped[id]) {
       let newIsFliped = this.state.isFliped.slice();
       newIsFliped[id] = true;
@@ -56,11 +90,14 @@ export class Board extends Component {
               this.state.openedCardIds.forEach(
                 el => (newActiveList[el] = false)
               );
-              this.setState({
-                isActive: newActiveList,
-                openedCardValues: [],
-                openedCardIds: []
-              });
+              this.setState(
+                {
+                  isActive: newActiveList,
+                  openedCardValues: [],
+                  openedCardIds: []
+                },
+                () => this.stopTimer()
+              );
             } else {
               newIsFliped = this.state.isFliped.slice();
 
@@ -89,6 +126,7 @@ export class Board extends Component {
           onRestart={this.onRestart}
           counter={this.state.counter}
           startTimer={this.state.startTimer}
+          time={this.state.time}
         />
         {this.state.isActive.every(elememt => {
           return elememt === false;
@@ -98,7 +136,7 @@ export class Board extends Component {
         <div className="memory-game">
           {cards.map((card, index) => {
             return (
-              <MemoryCard
+              <Card
                 key={index}
                 isFliped={this.state.isFliped[index]}
                 active={this.state.isActive[index]}
