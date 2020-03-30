@@ -2,8 +2,6 @@
 
 ## Overview
 
-- This app was created for the Chingu Voyage 12 pre-work.
-
 - This game is a browser-based card matching game that presents the player with cards arranged in a 4x4 grid.
 
 - The back of each card is a common design shared by all cards. The front contains a distinctive symbol shared by one pair of cards in the deck, thus there are 8 unique symbols shared by 8 pairs of cards in the deck.
